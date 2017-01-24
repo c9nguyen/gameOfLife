@@ -256,6 +256,7 @@ Person.prototype.update = function () {
     if (this.yVelocity >= 0) {
         for (var box in groundCollisionBox) {
             if (collise(this.groundHitBox, groundCollisionBox[box])) {
+                this.y = groundCollisionBox[box].y - this.height;
                 this.changeStatus(WALK);
                 this.gravity = false;
                 return;
@@ -354,6 +355,7 @@ Tomb.prototype.update = function() {
         if (this.yVelocity >= 0) {
             for (var box in this.game.collisionBox.ground) {
                 if (collise(this.colliseBox, this.game.collisionBox.ground[box])) {
+                    this.y = this.game.collisionBox.ground[box].y - this.height;
                     this.gravity = false;
                     return;
                 }
@@ -516,7 +518,7 @@ function buildTiles(gameEngine) {
     
     for (var i = 0; i < numOfTile; i++) {
         //Building the bottom ground
-        groundCollisionBox.push({x: groundX, y: canvasHeight - 97, width: 90, height: 25});
+        groundCollisionBox.push({x: groundX, y: canvasHeight - 87, width: 90, height: 20});
         gameEngine.addEntity(new NonAnimatedObject(gameEngine, AM.getAsset("./img/tiles/en_spritesheet.png"), 
                                                     groundX, canvasHeight - 97,
                                                     90, 37, 2, 3, -1, 1));
@@ -526,7 +528,7 @@ function buildTiles(gameEngine) {
 
         //Building second floor     
         if (i !== 1 && i !== numOfTile / 2 && i !== numOfTile / 2 - 1 && i < numOfTile - 3) {
-            groundCollisionBox.push({x: groundX, y: canvasHeight - 232, width: 90, height: 25});
+            groundCollisionBox.push({x: groundX, y: canvasHeight - 222, width: 90, height: 20});
             gameEngine.addEntity(new NonAnimatedObject(gameEngine, AM.getAsset("./img/tiles/en_spritesheet.png"), 
                                                         groundX, canvasHeight - 232,
                                                         90, 37, 2, 3, -1, 1));
@@ -537,7 +539,7 @@ function buildTiles(gameEngine) {
 
         //Building third floor       
         if ((i < numOfTile / 2 - 3) || (i === numOfTile / 2) || (i === numOfTile / 2 - 1) || (i > numOfTile / 2 + 2))  {
-            groundCollisionBox.push({x: groundX, y: canvasHeight - 352, width: 90, height: 25});
+            groundCollisionBox.push({x: groundX, y: canvasHeight - 342, width: 90, height: 20});
             gameEngine.addEntity(new NonAnimatedObject(gameEngine, AM.getAsset("./img/tiles/en_spritesheet.png"), 
                                                         groundX, canvasHeight - 352,
                                                         90, 37, 2, 3, -1, 1));
@@ -548,7 +550,7 @@ function buildTiles(gameEngine) {
 
         //Building fourth floor
         if (i !== 1 && i !== numOfTile / 2 && i !== numOfTile / 2 - 1 && i < numOfTile - 2) {
-            groundCollisionBox.push({x: groundX, y: canvasHeight - 472, width: 90, height: 25});
+            groundCollisionBox.push({x: groundX, y: canvasHeight - 462, width: 90, height: 20});
             gameEngine.addEntity(new NonAnimatedObject(gameEngine, AM.getAsset("./img/tiles/en_spritesheet.png"), 
                                                         groundX, canvasHeight - 472,
                                                         90, 37, 2, 3, -1, 1));
@@ -559,7 +561,7 @@ function buildTiles(gameEngine) {
 
         //Building fifth floor
         if (i < numOfTile / 2 + 3 && i > numOfTile / 2 - 4) {
-            groundCollisionBox.push({x: groundX, y: canvasHeight - 592, width: 90, height: 17});
+            groundCollisionBox.push({x: groundX, y: canvasHeight - 582, width: 90, height: 20});
             gameEngine.addEntity(new NonAnimatedObject(gameEngine, AM.getAsset("./img/tiles/en_spritesheet.png"), 
                                                         groundX, canvasHeight - 592,
                                                         90, 37, 2, 3, -1, 1));
